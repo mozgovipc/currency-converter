@@ -1,1 +1,4 @@
 <p>This is the partial for view 1.</p>
+<p>Base: {{$ctrl.base}}</p>
+<p>Rates:</p>
+<p ng-repeat="rate in $ctrl.rates">{{rate.symbol}}: {{rate.value}}</p>
