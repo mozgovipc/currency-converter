@@ -23,5 +23,11 @@ angular
           return response;
         },
       },
+      symbols: {
+        method: 'GET',
+        params: {
+          resource_id: 'symbols',
+        },
+      },
     });
   }]);

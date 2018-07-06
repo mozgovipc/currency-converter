@@ -5,3 +5,8 @@
 
 <p>Equals:</p>
 <p ng-repeat="rate in $ctrl.rates">{{rate.symbol}}: {{(rate.value * $ctrl.amount).toFixed(4)}}</p>
+
+<p>Supported symbols:</p>
+<ul>
+  <li ng-repeat="symbol in $ctrl.symbols">{{symbol.name}}: {{symbol.desc}}</li>
+</ul>

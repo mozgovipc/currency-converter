@@ -13,5 +13,14 @@ angular
         ctrl.rates = data.rates;
         ctrl.base = data.base;
       });
+
+      fixerIo.symbols().$promise.then(function(data) {
+        ctrl.symbols = Object.keys(data.symbols).map((function(name) {
+          return {
+            name: name,
+            desc: data.symbols[name],
+          };
+        }))
+      });
     }],
   });
