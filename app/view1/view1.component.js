@@ -6,9 +6,10 @@ angular
     templateUrl: 'view1/view1.html',
     controller: ['fixerIo', function(fixerIo) {
       var ctrl = this;
+
+      ctrl.amount = 1.0;
   
       fixerIo.latest().$promise.then(function(data) {
-        console.log(data);
         ctrl.rates = data.rates;
         ctrl.base = data.base;
       });
