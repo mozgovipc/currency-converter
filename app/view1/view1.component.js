@@ -9,18 +9,17 @@ angular
 
       ctrl.amount = 1.0;
   
-      fixerIo.latest().$promise.then(function(data) {
-        ctrl.rates = data.rates;
-        ctrl.base = data.base;
-      });
+      ctrl.symbols = fixerIo.symbols();
 
-      fixerIo.symbols().$promise.then(function(data) {
-        ctrl.symbols = Object.keys(data.symbols).map((function(name) {
-          return {
-            name: name,
-            desc: data.symbols[name],
-          };
-        }))
-      });
+      ctrl.symbols.$promise.then((function() {
+        fixerIo
+          .convert(1, 'CAD', 'USD')
+          .then(function(result) {
+            console.log(result);
+          })
+          .catch(function(reson) {
+            console.log(reson);
+          });
+      }));
     }],
   });
