@@ -8,18 +8,27 @@ angular
       var ctrl = this;
 
       ctrl.amount = 1.0;
-  
-      ctrl.symbols = fixerIo.symbols();
+      ctrl.result = 'converting...';
+      ctrl.from = {name: 'EUR'};
+      ctrl.to = {name: 'USD'};
 
+      ctrl.symbols = fixerIo.symbols();
       ctrl.symbols.$promise.then((function() {
+        // initial convertion, done after the symbols are loaded
+        ctrl.convert();
+      }));
+
+      ctrl.convert = function() {
+        ctrl.result = 'converting...';
+        var amount = parseFloat(ctrl.amount);
         fixerIo
-          .convert(1, 'CAD', 'USD')
+          .convert(amount, ctrl.from.name, ctrl.to.name)
           .then(function(result) {
-            console.log(result);
+            ctrl.result = result.toFixed(4);
           })
           .catch(function(reson) {
-            console.log(reson);
+            ctrl.result = result;
           });
-      }));
+      };
     }],
   });
